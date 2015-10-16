@@ -10,19 +10,21 @@ import UIKit
 
 class SatelliteViewController: UIViewController {
     
-    let apikey = "EfDLSUrWJxYXtgqCyXNz14y9QQYSBaZm8DpBwMWg"
+    @IBOutlet weak var img: UIImageView!
+    let apikey = "OGmwUxiA5mcUEyGDMZVIQzkaTh1WL4OM59kA9Qy7"
     var longitute: String?
     var latitude: String?
     var imageurl: String?
     var datestring: String?
+    var cloudscore = true
     let baseURL = "https://api.nasa.gov/planetary/earth/imagery"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       // print("ran request")
         //var request = NSMutableURLRequest(URL: NSURL(fileURLWithPath: baseURL))
-        performNASARequest("0", longitude: "0", date: "2014-02-02")
-        print("ran request")
+        performNASARequest("150.8931239", latitude: "-34.424984", date: "2015-05-01")
+        //print("ran request")
         //            (data, error) -> Void in
         //            if error != nil {
         //                println(error)
@@ -49,15 +51,19 @@ class SatelliteViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func performNASARequest(latitude: String, longitude: String, date: String) {
+    func performNASARequest(longitude: String, latitude: String, date: String) {
         let urlComponents = NSURLComponents(string: baseURL)
-        let latQuery: NSURLQueryItem = NSURLQueryItem(name: "lat", value: latitude)
         let lonQuery: NSURLQueryItem = NSURLQueryItem(name: "lon", value: longitude)
+        let latQuery: NSURLQueryItem = NSURLQueryItem(name: "lat", value: latitude)
+        let dateQuery: NSURLQueryItem = NSURLQueryItem(name: "date", value: date)
+        let cloudQuery: NSURLQueryItem = NSURLQueryItem(name: "cloud_score", value: "True")
+        let  keyQuery: NSURLQueryItem = NSURLQueryItem(name: "api_key", value: apikey)
         //components.lat = latitude
         //components.lon = longitude
-        urlComponents!.queryItems = [latQuery, lonQuery]
+        urlComponents!.queryItems = [lonQuery, latQuery, dateQuery, cloudQuery, keyQuery]
         
         let url = urlComponents?.URL
+        //print("url is: \(url)")
         
         
         let session = NSURLSession.sharedSession()
@@ -67,10 +73,9 @@ class SatelliteViewController: UIViewController {
             completionHandler: {(data, response, error) -> Void in
                 if error != nil {
                     print("Error trying to GET from NASA \(error)")
-                } else if let d = data, let r = response{
-                    var result = NSString(data: d, encoding:NSASCIIStringEncoding)!
+                } else if let d = data, let r = response {
+                    let result = NSString(data: d, encoding:NSASCIIStringEncoding)!
                     print("query result \(result)")
-                    //var error:NSError? = nil
                     do{
                         let json = try NSJSONSerialization.JSONObjectWithData(d, options:NSJSONReadingOptions.AllowFragments )
                         guard let dict : NSDictionary = json as? NSDictionary else {
@@ -80,12 +85,11 @@ class SatelliteViewController: UIViewController {
                         if let date = dict["date"] as? String, img = dict["url"] as? String{
                             self.datestring = date
                             self.imageurl = img
+                            print("imageurl: \(self.imageurl)")
                             
                         }  else{
                             print("date and image not found in json string")
                         }
-                        
-                        
                     } catch {
                         print("json error")
                     }
@@ -98,6 +102,29 @@ class SatelliteViewController: UIViewController {
     }
     
     
+    func fetchImage(urlString: String){}
+        //will load remote image into memory and then display image in imageview
+//        let session = NSURLSession.sharedSession()
+//        session.dataTaskWithURL(NSURL(string: urlString))
+//        
+        
+//        if let url = NSURL(string: urlString){
+//            let session = NSURLSession.sharedSession()
+//            session.dataTaskWithURL(url, completionHandler: (data, response, error) in
+//                
+           //            if let data = NSData(contentsOfURL: url){
+          
+//            if let data = NSData(contentsOfURL: url){
+//    img.contentMode = UIViewContentMode.ScaleAspectFit
+//NSURLResponse?,
+// NSError?) -> Void) ->
+//            if let data = NSData(contentsOfURL: url){
+//                img.contentMode = UIViewContentMode.ScaleAspectFit
+//                img.image = UIImage(data: data)
+//            }
+//        }
+        
+            
     
     /*
     // MARK: - Navigation
