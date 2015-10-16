@@ -12,8 +12,9 @@ class SatelliteViewController: UIViewController {
     
     @IBOutlet weak var img: UIImageView!
     let apikey = "OGmwUxiA5mcUEyGDMZVIQzkaTh1WL4OM59kA9Qy7"
-    @IBOutlet weak var datelabel: UITextView!
-    var longitute: String?
+    
+    @IBOutlet weak var datelabel: UILabel!
+    var longitude: String?
     var latitude: String?
     var imageurl: String?
     var datestring: String?
@@ -24,15 +25,22 @@ class SatelliteViewController: UIViewController {
         super.viewDidLoad()
        // print("ran request")
         //var request = NSMutableURLRequest(URL: NSURL(fileURLWithPath: baseURL))
-        performNASARequest("150.8931239", latitude: "-34.424984", date: "2015-05-01")
-        //print("ran request")
-        //            (data, error) -> Void in
-        //            if error != nil {
-        //                println(error)
-        //            } else {
-        //                println(data)
-        //            }
-        //        }
+        self.longitude = "100.5233"
+        self.latitude = "13.7367"
+                
+        performNASARequestSequence(longitude!, latitude: latitude!)
+//        
+//        var currentDate = NSDate()
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "YYYY-MM-dd"
+//        datestring = dateFormatter.stringFromDate(currentDate)
+//        for index in 1...5 {
+//            let cal = NSCalendar.currentCalendar()
+//            let periodcomponents = NSDateComponents()
+//            periodcomponents.month = -index
+//            let d = cal.dateByAddingComponents(periodcomponents, toDate: currentDate, options: [])
+//            performNASARequest(longitude!, latitude: latitude!, date: dateFormatter.stringFromDate(d!))
+//        }
         
         //request.timeoutInterval = 5
         //request.HTTPMethod = "GET"/// ?
@@ -52,7 +60,31 @@ class SatelliteViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func performNASARequestSequence(longitude: String, latitude: String){
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        datestring = dateFormatter.stringFromDate(currentDate)
+        let cal = NSCalendar.currentCalendar()
+        let periodcomponents = NSDateComponents()
+        for index in 1...7 {
+//            let cal = NSCalendar.currentCalendar()
+//            let periodcomponents = NSDateComponents()
+            periodcomponents.month = -index
+            let d = cal.dateByAddingComponents(periodcomponents, toDate: currentDate, options: [])
+            if let date = d {
+                self.datestring = dateFormatter.stringFromDate(date)
+                print("date being looked up: \(self.datestring)")
+            //self.datelabel.text = datestring
+                performNASARequest(longitude, latitude: latitude, date: self.datestring!)
+            }
+        }
+    }
+    
     func performNASARequest(longitude: String, latitude: String, date: String) {
+//        var dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "YYYY-MM-dd"
+        //let datestr = dateFormatter.stringFromDate(morningOfChristmas)
         let urlComponents = NSURLComponents(string: baseURL)
         let lonQuery: NSURLQueryItem = NSURLQueryItem(name: "lon", value: longitude)
         let latQuery: NSURLQueryItem = NSURLQueryItem(name: "lat", value: latitude)
@@ -85,7 +117,8 @@ class SatelliteViewController: UIViewController {
                         }
                         if let date = dict["date"] as? String, img = dict["url"] as? String{
                             self.datestring = date
-                            //self.datelabel.text = self.datestring
+                            //self.datelabel.text = self.datestring!
+                            //print("datestring after calling request: \(self.datestring)")
                             self.imageurl = img
                             self.fetchImage(img)
                             //print("imageurl: \(self.imageurl)")
@@ -99,7 +132,7 @@ class SatelliteViewController: UIViewController {
                 }
                 
         })
-        print("perform function reached")
+        //print("perform function reached")
         task.resume()
         
     }
@@ -117,8 +150,9 @@ class SatelliteViewController: UIViewController {
                     print("error with image url")
                 }
                 else if let d = data {
-                    print("loading image into the picture")
+                    //print("loading image into the picture")
                     dispatch_async(dispatch_get_main_queue(), {
+                        self.datelabel.text = self.datestring!
                         self.img.image = UIImage(data: d)
                         self.img.contentMode = UIViewContentMode.ScaleAspectFit
                     })
