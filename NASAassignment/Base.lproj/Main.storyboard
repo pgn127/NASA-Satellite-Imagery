@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ST5-pC-b19">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Satellite View Controller-->
@@ -16,20 +17,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-qD-PBw">
-                                <rect key="frame" x="40" y="409" width="240" height="128"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="image date here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-qD-PBw">
+                                <rect key="frame" x="33" y="547" width="542" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="XGs-fY-8bi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XP4-VL-Z0i">
-                                <rect key="frame" x="83" y="141" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="XP4-VL-Z0i">
+                                <rect key="frame" x="0.0" y="72" width="600" height="467"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Awp-qD-PBw" secondAttribute="bottom" constant="8" id="0jv-Gq-QuU"/>
+                            <constraint firstItem="XP4-VL-Z0i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1PW-2r-aWJ"/>
+                            <constraint firstItem="Awp-qD-PBw" firstAttribute="top" secondItem="XP4-VL-Z0i" secondAttribute="bottom" constant="8" id="Uz5-zf-7yf"/>
+                            <constraint firstItem="XP4-VL-Z0i" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Y9g-1o-oaw"/>
+                            <constraint firstItem="Awp-qD-PBw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="13" id="d7L-pW-Jvs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Awp-qD-PBw" secondAttribute="trailing" constant="5" id="etw-Vg-S2J"/>
+                            <constraint firstAttribute="trailing" secondItem="XP4-VL-Z0i" secondAttribute="trailing" id="hjb-8N-RmP"/>
+                            <constraint firstItem="Awp-qD-PBw" firstAttribute="top" secondItem="XP4-VL-Z0i" secondAttribute="top" id="ijg-P6-wrH"/>
+                            <constraint firstItem="Awp-qD-PBw" firstAttribute="bottom" secondItem="XP4-VL-Z0i" secondAttribute="bottom" id="jhp-Bi-7wN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ijg-P6-wrH"/>
+                                <exclude reference="jhp-Bi-7wN"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="k75-4l-B6h"/>
                     <connections>
+                        <outlet property="datelabel" destination="Awp-qD-PBw" id="Roq-DS-FbF"/>
                         <outlet property="img" destination="XP4-VL-Z0i" id="hbs-ie-sb5"/>
                     </connections>
                 </viewController>

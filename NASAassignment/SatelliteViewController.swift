@@ -12,6 +12,7 @@ class SatelliteViewController: UIViewController {
     
     @IBOutlet weak var img: UIImageView!
     let apikey = "OGmwUxiA5mcUEyGDMZVIQzkaTh1WL4OM59kA9Qy7"
+    @IBOutlet weak var datelabel: UITextView!
     var longitute: String?
     var latitude: String?
     var imageurl: String?
@@ -75,7 +76,7 @@ class SatelliteViewController: UIViewController {
                     print("Error trying to GET from NASA \(error)")
                 } else if let d = data, let r = response {
                     let result = NSString(data: d, encoding:NSASCIIStringEncoding)!
-                    print("query result \(result)")
+                    //print("query result \(result)")
                     do{
                         let json = try NSJSONSerialization.JSONObjectWithData(d, options:NSJSONReadingOptions.AllowFragments )
                         guard let dict : NSDictionary = json as? NSDictionary else {
@@ -84,8 +85,10 @@ class SatelliteViewController: UIViewController {
                         }
                         if let date = dict["date"] as? String, img = dict["url"] as? String{
                             self.datestring = date
+                            //self.datelabel.text = self.datestring
                             self.imageurl = img
-                            print("imageurl: \(self.imageurl)")
+                            self.fetchImage(img)
+                            //print("imageurl: \(self.imageurl)")
                             
                         }  else{
                             print("date and image not found in json string")
@@ -102,30 +105,35 @@ class SatelliteViewController: UIViewController {
     }
     
     
-    func fetchImage(urlString: String){}
+    func fetchImage(urlString: String){
         //will load remote image into memory and then display image in imageview
-//        let session = NSURLSession.sharedSession()
-//        session.dataTaskWithURL(NSURL(string: urlString))
-//        
+
         
-//        if let url = NSURL(string: urlString){
-//            let session = NSURLSession.sharedSession()
-//            session.dataTaskWithURL(url, completionHandler: (data, response, error) in
-//                
-           //            if let data = NSData(contentsOfURL: url){
-          
-//            if let data = NSData(contentsOfURL: url){
-//    img.contentMode = UIViewContentMode.ScaleAspectFit
-//NSURLResponse?,
-// NSError?) -> Void) ->
-//            if let data = NSData(contentsOfURL: url){
-//                img.contentMode = UIViewContentMode.ScaleAspectFit
-//                img.image = UIImage(data: data)
-//            }
-//        }
+        if let url = NSURL(string: urlString){
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithURL(url, completionHandler: {(data, response, error) in
+                
+                if error != nil {
+                    print("error with image url")
+                }
+                else if let d = data {
+                    print("loading image into the picture")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.img.image = UIImage(data: d)
+                        self.img.contentMode = UIViewContentMode.ScaleAspectFit
+                    })
+                    
+                }
+                
+            })
+            task.resume()
+        }
+       
+        
+
         
             
-    
+}
     /*
     // MARK: - Navigation
     
@@ -135,5 +143,4 @@ class SatelliteViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
-    
 }
