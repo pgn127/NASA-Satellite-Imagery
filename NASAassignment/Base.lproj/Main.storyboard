@@ -4,6 +4,50 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="E1M-Bw-3hU">
+            <objects>
+                <viewController id="1yk-DP-mha" customClass="MapViewController" customModule="NASAassignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cCr-6d-02s"/>
+                        <viewControllerLayoutGuide type="bottom" id="eEH-Eo-dKL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cCO-6o-KbR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AfC-CK-bTN">
+                                <rect key="frame" x="0.0" y="64" width="600" height="498"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4E-0k-gcZ">
+                                <rect key="frame" x="252" y="570" width="96" height="30"/>
+                                <state key="normal" title="View Location"/>
+                                <connections>
+                                    <action selector="viewLoc:" destination="1yk-DP-mha" eventType="touchUpInside" id="3DT-R6-4Oh"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="Details" id="HmF-6W-frV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y4E-0k-gcZ" firstAttribute="centerX" secondItem="cCO-6o-KbR" secondAttribute="centerX" id="6NB-hj-kkJ"/>
+                            <constraint firstItem="Y4E-0k-gcZ" firstAttribute="top" secondItem="AfC-CK-bTN" secondAttribute="bottom" constant="8" id="7lI-6W-8Mg"/>
+                            <constraint firstItem="eEH-Eo-dKL" firstAttribute="top" secondItem="Y4E-0k-gcZ" secondAttribute="bottom" id="Q6u-JH-mbh"/>
+                            <constraint firstItem="AfC-CK-bTN" firstAttribute="top" secondItem="cCr-6d-02s" secondAttribute="bottom" id="Sg0-To-TWf"/>
+                            <constraint firstItem="AfC-CK-bTN" firstAttribute="leading" secondItem="cCO-6o-KbR" secondAttribute="leading" id="aOh-yP-aWA"/>
+                            <constraint firstAttribute="trailing" secondItem="AfC-CK-bTN" secondAttribute="trailing" id="xYh-6T-Sjt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Nkc-zB-BNJ"/>
+                    <connections>
+                        <outlet property="mapView" destination="AfC-CK-bTN" id="dVu-fi-51X"/>
+                        <outlet property="viewButton" destination="Y4E-0k-gcZ" id="Itb-bm-oql"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLv-cd-Ef9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="611" y="301"/>
+        </scene>
         <!--Satellite View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -46,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="483"/>
+            <point key="canvasLocation" x="1341" y="243"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h3a-Jc-1BA">
@@ -59,12 +103,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ACg-kD-Mbx"/>
+                        <segue destination="1yk-DP-mha" kind="relationship" relationship="rootViewController" id="aTk-qW-JOJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0S-rH-EfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="511"/>
+            <point key="canvasLocation" x="-99" y="271"/>
         </scene>
     </scenes>
 </document>

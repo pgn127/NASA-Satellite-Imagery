@@ -29,40 +29,19 @@ class SatelliteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        self.longitude = "-0.1276250"
-        self.latitude = "51.5033630"
+        //self.longitude = "-0.1276250"
+        //self.latitude = "51.5033630"
 
         performNASARequestSequence(longitude!, latitude: latitude!)
         
-                actInd.center = self.view.center
-                actInd.hidesWhenStopped = true
-                actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-                view.addSubview(actInd)
+        actInd.center = self.view.center
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(actInd)
         
         actInd.startAnimating()
         
-        
-        
-//        if loadingComplete{
-//        var timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("displayImages"), userInfo: nil, repeats: true)
-//        }
 
-//
-//        var currentDate = NSDate()
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "YYYY-MM-dd"
-//        datestring = dateFormatter.stringFromDate(currentDate)
-//        for index in 1...5 {
-//            let cal = NSCalendar.currentCalendar()
-//            let periodcomponents = NSDateComponents()
-//            periodcomponents.month = -index
-//            let d = cal.dateByAddingComponents(periodcomponents, toDate: currentDate, options: [])
-//            performNASARequest(longitude!, latitude: latitude!, date: dateFormatter.stringFromDate(d!))
-//        }
-        
-        //request.timeoutInterval = 5
-        //request.HTTPMethod = "GET"/// ?
-        //let task = session.dataTaskWithRequest(request){
         
         
         
@@ -114,6 +93,7 @@ class SatelliteViewController: UIViewController {
                 //print("date being looked up: \(datestring)")
             //self.datelabel.text = datestring
                 performNASARequest(longitude, latitude: latitude, date: datestring, order: orderIndex)
+                //print("call \(index)")
                 orderIndex--
                 //let curloc = locInfo(pic: nil, url: nil, date: datestring)
                 //self.locHistory.insert(curloc, atIndex:0)
@@ -149,7 +129,7 @@ class SatelliteViewController: UIViewController {
                     do{
                         //print("current order \(order)")
                         let json = try NSJSONSerialization.JSONObjectWithData(d, options:NSJSONReadingOptions.AllowFragments )
-                        print("current order \(order)")
+                        //print("current order \(order)")
                         guard let dict : NSDictionary = json as? NSDictionary else {
                             print("not a dictionary")
                             return
@@ -187,11 +167,11 @@ class SatelliteViewController: UIViewController {
                 if error != nil {
                     print("error with image url")
                 }
-                else if let d = data {
+                else if let d = data, img = UIImage(data: d) {
                     //print("loading image into the picture")
                     dispatch_async(dispatch_get_main_queue(), {
                         //self.datelabel.text = self.datestring!
-                        let curloc = locInfo(pic: UIImage(data: d)!, url: url, date: withDate)
+                        let curloc = locInfo(pic: img, url: url, date: withDate)
                         self.locHistory[currentCount] = curloc
                         //self.locHistory.insert(curloc, atIndex:currentCount-1)
                         self.counter--

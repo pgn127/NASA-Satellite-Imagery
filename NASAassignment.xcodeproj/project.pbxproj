@@ -14,6 +14,7 @@
 		6D5C7B151BCC924D00E93507 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D5C7B131BCC924D00E93507 /* LaunchScreen.storyboard */; };
 		6D5C7B201BCC924D00E93507 /* NASAassignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C7B1F1BCC924D00E93507 /* NASAassignmentTests.swift */; };
 		6D5C7B2B1BCC924E00E93507 /* NASAassignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C7B2A1BCC924E00E93507 /* NASAassignmentUITests.swift */; };
+		6DF572381BD4805400D91BFA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF572371BD4805400D91BFA /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		6D5C7B261BCC924E00E93507 /* NASAassignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NASAassignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5C7B2A1BCC924E00E93507 /* NASAassignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAassignmentUITests.swift; sourceTree = "<group>"; };
 		6D5C7B2C1BCC924E00E93507 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DF572371BD4805400D91BFA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				6D5C7B0A1BCC924D00E93507 /* AppDelegate.swift */,
 				6D5C7B0C1BCC924D00E93507 /* SatelliteViewController.swift */,
 				6D5C7B0E1BCC924D00E93507 /* Main.storyboard */,
+				6DF572371BD4805400D91BFA /* MapViewController.swift */,
 				6D5C7B111BCC924D00E93507 /* Assets.xcassets */,
 				6D5C7B131BCC924D00E93507 /* LaunchScreen.storyboard */,
 				6D5C7B161BCC924D00E93507 /* Info.plist */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D5C7B0D1BCC924D00E93507 /* SatelliteViewController.swift in Sources */,
+				6DF572381BD4805400D91BFA /* MapViewController.swift in Sources */,
 				6D5C7B0B1BCC924D00E93507 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +485,7 @@
 				6D5C7B311BCC924E00E93507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D5C7B321BCC924E00E93507 /* Build configuration list for PBXNativeTarget "NASAassignmentTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +494,7 @@
 				6D5C7B341BCC924E00E93507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D5C7B351BCC924E00E93507 /* Build configuration list for PBXNativeTarget "NASAassignmentUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +503,7 @@
 				6D5C7B371BCC924E00E93507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
