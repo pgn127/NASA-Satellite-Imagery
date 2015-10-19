@@ -24,22 +24,25 @@ class SatelliteViewController: UIViewController {
     var locIndex: Int?
     var cloudscore = true
     let baseURL = "https://api.nasa.gov/planetary/earth/imagery"
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
-//        actInd.center = self.view.center
-//        actInd.hidesWhenStopped = true
-//        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-//        view.addSubview(actInd)
-//        actInd.startAnimating()
-//        actInd.stopAnimating()
-//        actInd.removeFromSuperview()
        
         self.longitude = "-0.1276250"
         self.latitude = "51.5033630"
 
         performNASARequestSequence(longitude!, latitude: latitude!)
+        
+                actInd.center = self.view.center
+                actInd.hidesWhenStopped = true
+                actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+                view.addSubview(actInd)
+        
+        actInd.startAnimating()
+        
+        
+        
 //        if loadingComplete{
 //        var timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("displayImages"), userInfo: nil, repeats: true)
 //        }
@@ -193,7 +196,9 @@ class SatelliteViewController: UIViewController {
                         //self.locHistory.insert(curloc, atIndex:currentCount-1)
                         self.counter--
                         if self.counter == 0 {
-                            self.loadingComplete = false
+                            self.loadingComplete = true
+                            self.actInd.stopAnimating()
+                            self.actInd.removeFromSuperview()
                             var timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: Selector("displayImages"), userInfo: nil, repeats: true)
 
                         }
