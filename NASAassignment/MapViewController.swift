@@ -24,7 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         self.mapView.delegate = self
         
-        var press = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        let press = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
         press.minimumPressDuration = 1.5
         mapView.addGestureRecognizer(press)
         viewButton.alpha = 0
@@ -46,8 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if(mapView.annotations.count != 0){
                 mapView.removeAnnotations(mapView.annotations)
             }
-            var touchPoint = gestureRec.locationInView(mapView)
-            var newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
+            let touchPoint = gestureRec.locationInView(mapView)
+            let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
             let annotation = MKPointAnnotation()
             currentLat = newCoordinates.latitude
             currentLong = newCoordinates.longitude

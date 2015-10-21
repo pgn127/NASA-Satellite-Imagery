@@ -113,7 +113,7 @@ class SatelliteViewController: UIViewController {
         urlComponents!.queryItems = [lonQuery, latQuery, dateQuery, cloudQuery, keyQuery]
         
         let url = urlComponents?.URL
-        //print("url is: \(url)")
+        print("url is: \(url)")
         
         
         let session = NSURLSession.sharedSession()
@@ -123,9 +123,10 @@ class SatelliteViewController: UIViewController {
             completionHandler: {(data, response, error) -> Void in
                 if error != nil {
                     print("Error trying to GET from NASA \(error)")
-                } else if let d = data, let r = response {
-                    let result = NSString(data: d, encoding:NSASCIIStringEncoding)!
+                } else if let d = data, let r = response as? NSHTTPURLResponse{
+//                    let result = NSString(data: d, encoding:NSASCIIStringEncoding)!
                     //print("query result \(result)")
+                    if(r.statusCode == 200){
                     do{
                         //print("current order \(order)")
                         let json = try NSJSONSerialization.JSONObjectWithData(d, options:NSJSONReadingOptions.AllowFragments )
@@ -146,6 +147,7 @@ class SatelliteViewController: UIViewController {
                         }
                     } catch {
                         print("json error")
+                    }
                     }
                 }
                 
