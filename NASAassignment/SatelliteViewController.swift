@@ -113,7 +113,7 @@ class SatelliteViewController: UIViewController {
         urlComponents!.queryItems = [lonQuery, latQuery, dateQuery, cloudQuery, keyQuery]
         
         let url = urlComponents?.URL
-        print("url is: \(url)")
+        //print("url is: \(url)")
         
         
         let session = NSURLSession.sharedSession()
@@ -142,7 +142,7 @@ class SatelliteViewController: UIViewController {
                             self.fetchImage(img, withDate: date, currentCount: order)
                             //print("imageurl: \(self.imageurl)")
                             
-                        }  else{
+                        }  else {
                             print("date and image not found in json string")
                         }
                     } catch {
