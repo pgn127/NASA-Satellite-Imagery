@@ -11,7 +11,7 @@ import UIKit
 class SatelliteViewController: UIViewController {
     
     @IBOutlet weak var img: UIImageView!
-    let apikey = "OGmwUxiA5mcUEyGDMZVIQzkaTh1WL4OM59kA9Qy7"
+    let apikey = "fPV4y0a4rpCq4yOfUeMcjQTnOnaHqlz3c07pIXnW"//"OGmwUxiA5mcUEyGDMZVIQzkaTh1WL4OM59kA9Qy7"
     
     @IBOutlet weak var datelabel: UILabel!
     var longitude: String?
@@ -113,7 +113,7 @@ class SatelliteViewController: UIViewController {
         urlComponents!.queryItems = [lonQuery, latQuery, dateQuery, cloudQuery, keyQuery]
         
         let url = urlComponents?.URL
-        //print("url is: \(url)")
+        print("url is: \(url)")
         
         
         let session = NSURLSession.sharedSession()
