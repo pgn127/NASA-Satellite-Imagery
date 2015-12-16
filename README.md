@@ -26,7 +26,7 @@ This view displays the historic satellite imagery for the pin on the previous sc
 7 NASA API requests are made starting at the current date and time of the user's long press, and then going back a month at a time, retrieving a corresponding image.
 
 All data is loaded asynchronously using NSURLSession. A loading indicator is displayed to the user while the data is retrieved from NASA's API.
-![Img] (https://raw.github.com/pgn127/iOSMagic8Ball/master/spanishstart.png)
+![Img] (https://raw.github.com/pgn127/NASA-Satellite-Imagery/master/loading.png)
 
 
 ##MapViewController
